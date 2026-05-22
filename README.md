@@ -3,8 +3,15 @@
 > **공인중개사를 위한 AI 자동화 학습 가이드**
 > Windows 환경 Docker + Cloudflare Tunnel 기반 로컬 설치부터 실무 활용까지
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-라이브-success)](https://github.com/사용자명/n8n-guide)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-라이브-success)](https://sachol.github.io/dosiajae-n8n-guide/)
 [![제작자](https://img.shields.io/badge/제작-도시아재-E63946)](https://instagram.com/sachol09)
+[![라이선스](https://img.shields.io/badge/라이선스-학습용-FFC700)](#-라이선스)
+
+---
+
+## 🚀 라이브 가이드 보기
+
+### 👉 **[https://sachol.github.io/dosiajae-n8n-guide/](https://sachol.github.io/dosiajae-n8n-guide/)**
 
 ---
 
@@ -35,24 +42,16 @@
 
 ---
 
-## 🚀 라이브 가이드 보기
-
-**👉 [가이드 바로가기](https://사용자명.github.io/n8n-guide/)**
-
-> 위 링크는 GitHub Pages 배포 후 자동으로 활성화됩니다. 저장소 이름이 다르면 URL도 변경됩니다.
-
----
-
 ## 📦 로컬에서 보기
 
 저장소를 받은 후 `index.html`을 더블클릭하면 브라우저에서 바로 열립니다. 별도 서버 설정이 필요 없습니다.
 
 ```bash
 # 저장소 클론
-git clone https://github.com/사용자명/n8n-guide.git
+git clone https://github.com/sachol/dosiajae-n8n-guide.git
 
 # 폴더 진입 후 index.html 열기
-cd n8n-guide
+cd dosiajae-n8n-guide
 start index.html       # Windows
 open index.html        # macOS
 xdg-open index.html    # Linux
@@ -75,7 +74,7 @@ xdg-open index.html    # Linux
 ## 📅 업데이트 로드맵
 
 - [x] **v1.0** — 1편 · 설치편 완성 (2026.05.22)
-- [ ] **v1.1** — 2편 · 활용편 A 섹션 (기본기 4개 카드 상세 내용)
+- [ ] **v1.1** — 2편 · 활용편 A 섹션 (기본기 4개 카드 상세 내용) — *다음 주 예정*
 - [ ] **v1.2** — 2편 · 활용편 B 섹션 (공인중개사 실전 자동화)
 - [ ] **v1.3** — 2편 · 활용편 C 섹션 (AI 통합)
 - [ ] **v2.0** — Episode 03 신규 강의 자료 추가
@@ -129,4 +128,4 @@ xdg-open index.html    # Linux
 
 ## 💡 피드백
 
-가이드 개선 제안이나 오류 신고는 Issues 탭에 남겨주세요.
+가이드 개선 제안이나 오류 신고는 [Issues](https://github.com/sachol/dosiajae-n8n-guide/issues) 탭에 남겨주세요.
