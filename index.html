@@ -5,7 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="n8n 로컬 설치 및 활용 가이드 - 도시아재 제작 (공인중개사를 위한 AI 자동화 학습 자료)">
 <meta name="author" content="도시아재">
+<meta name="keywords" content="n8n, 자동화, 공인중개사, AI, Docker, Cloudflare, 부동산, 도시아재, 신화공인중개사사무소">
 <title>n8n 설치 및 활용방법 · 도시아재 가이드</title>
+
+<!-- ============================================
+     OPEN GRAPH · 소셜 공유 메타태그
+     카톡 · 인스타 · 페북 · X · LinkedIn 등 미리보기
+     ============================================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="도시아재 가이드">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://sachol.github.io/dosiajae-n8n-guide/">
+<meta property="og:title" content="n8n 설치 및 활용방법 · 도시아재 가이드">
+<meta property="og:description" content="공인중개사를 위한 AI 자동화 학습 가이드 — Windows 환경 Docker + Cloudflare Tunnel 기반 로컬 설치부터 24/7 운영까지. 8단계 + 부록 + 명령어 63개 + FAQ 15개.">
+<meta property="og:image" content="https://sachol.github.io/dosiajae-n8n-guide/og-image.png">
+<meta property="og:image:secure_url" content="https://sachol.github.io/dosiajae-n8n-guide/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="n8n 설치 및 활용방법 - 도시아재 가이드 바우하우스 디자인 커버">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="n8n 설치 및 활용방법 · 도시아재 가이드">
+<meta name="twitter:description" content="공인중개사를 위한 AI 자동화 학습 가이드 — Docker + Cloudflare로 자체 서버 구축하기">
+<meta name="twitter:image" content="https://sachol.github.io/dosiajae-n8n-guide/og-image.png">
+<meta name="twitter:image:alt" content="n8n 설치 및 활용방법 - 도시아재 가이드">
+
+<!-- 카카오톡 추가 호환 -->
+<meta property="kakao:title" content="n8n 설치 및 활용방법 · 도시아재 가이드">
+<meta property="kakao:description" content="공인중개사를 위한 AI 자동화 학습 가이드">
+<meta property="kakao:image" content="https://sachol.github.io/dosiajae-n8n-guide/og-image.png">
+
+<!-- Favicon (Open Graph 이미지를 기본으로 사용) -->
+<link rel="icon" type="image/png" href="og-image.png">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -845,6 +878,222 @@ body {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: -0.005em;
+}
+
+/* ============================================
+   ROADMAP — EXPANDABLE CARDS (Episode 2 v2)
+   ============================================ */
+.roadmap-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 900;
+  margin: 48px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  letter-spacing: -0.025em;
+}
+
+.roadmap-section-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display-en);
+  font-size: 20px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.roadmap-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.roadmap-meta .roadmap-tag {
+  margin-top: 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+  border: 2px solid var(--bh-black);
+}
+
+.status-badge.published {
+  background: var(--bh-yellow);
+  color: var(--bh-black);
+}
+
+.status-badge.coming-soon {
+  background: var(--bh-light-gray);
+  color: var(--bh-black);
+}
+
+.roadmap-card.expandable {
+  cursor: pointer;
+  padding-bottom: 24px;
+}
+
+.roadmap-card.expandable .expand-icon {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  background: var(--bh-blue);
+  color: var(--bh-white);
+  border: 2px solid var(--bh-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display-en);
+  font-size: 18px;
+  font-weight: 900;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.roadmap-card.expandable.open .expand-icon {
+  background: var(--bh-red);
+  transform: rotate(45deg);
+}
+
+.roadmap-card.expandable:hover .expand-icon {
+  background: var(--bh-red);
+}
+
+.roadmap-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin: 0 -24px -24px;
+}
+
+.roadmap-card.expandable.open .roadmap-detail {
+  max-height: 8000px;
+}
+
+.roadmap-detail-inner {
+  padding: 24px 24px 12px;
+  margin-top: 20px;
+  border-top: 3px solid var(--bh-black);
+  background: var(--bh-cream);
+}
+
+.roadmap-detail-inner h5 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  margin: 20px 0 10px;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--bh-black);
+}
+
+.roadmap-detail-inner h5:first-child {
+  margin-top: 0;
+}
+
+.roadmap-detail-inner p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 10px 0;
+}
+
+.roadmap-detail-inner ul,
+.roadmap-detail-inner ol {
+  padding-left: 22px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.roadmap-detail-inner li {
+  margin: 4px 0;
+}
+
+.roadmap-detail-inner strong {
+  color: var(--bh-red);
+  font-weight: 700;
+}
+
+.roadmap-detail-inner code {
+  background: var(--bh-black);
+  color: var(--bh-yellow);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.roadmap-detail-inner .compare-table {
+  font-size: 13px;
+}
+
+.roadmap-detail-inner .compare-table th,
+.roadmap-detail-inner .compare-table td {
+  padding: 10px 14px;
+}
+
+/* Download Button (워크플로우 JSON) */
+.download-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--bh-black);
+  color: var(--bh-cream);
+  text-decoration: none;
+  border: 3px solid var(--bh-black);
+  box-shadow: var(--shadow-bauhaus-yellow);
+  margin: 12px 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.download-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--bh-yellow);
+  background: var(--bh-black);
+  color: var(--bh-yellow);
+}
+
+.download-btn .download-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.download-btn .download-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.download-btn .download-text strong {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bh-yellow);
+}
+
+.download-btn .download-text em {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: normal;
+  color: var(--bh-light-gray);
+  font-weight: 400;
+}
+
+.download-btn:hover .download-text strong {
+  color: var(--bh-yellow);
 }
 
 /* ============================================
@@ -2592,7 +2841,7 @@ networks:
 </section>
 
 <!-- ============================================
-     TAB: USAGE (Episode 2 - Roadmap)
+     TAB: USAGE (Episode 2 - Roadmap + Detail)
      ============================================ -->
 <section class="tab-content" id="tab-usage" role="tabpanel">
   <div class="container">
@@ -2601,54 +2850,164 @@ networks:
       <div class="section-number">EP<br><span style="color:var(--bh-red)">02</span></div>
       <div class="section-info">
         <h2>n8n 활용편 · 로드맵</h2>
-        <p>설치만으로 끝나지 않습니다. 실제 자동화 워크플로우를 구축하는 활용편입니다. <strong>아래 주제들은 추후 강의에서 다룹니다.</strong></p>
+        <p>설치만으로 끝나지 않습니다. 실제 자동화 워크플로우를 구축하는 활용편입니다. <strong>✅ 공개됨</strong> 표시 카드를 클릭하면 상세 콘텐츠가 펼쳐지고, <strong>📥 워크플로우 JSON</strong>을 다운로드해 n8n에 즉시 임포트할 수 있습니다.</p>
       </div>
     </div>
 
     <div class="info-card tip">
-      <div class="info-card-title">📅 활용편 (Episode 02~) 공개 예정</div>
+      <div class="info-card-title">📅 활용편 단계별 공개</div>
       <div class="info-card-body">
-        이 로드맵은 도시아재가 RSA 총동문회 AI 포럼에서 진행할 다음 강의 주제 미리보기입니다. 강의 후 본 가이드에 추가됩니다. <strong>Instagram @sachol09</strong>에서 강의 일정을 확인하세요.
+        도시아재가 RSA 총동문회 AI 포럼에서 진행하는 강의에 맞춰 단계별로 콘텐츠가 추가됩니다. <strong>Instagram @sachol09</strong>에서 강의 일정을 확인하세요. 강의 후 본 페이지의 해당 카드에 상세 내용 + 워크플로우 JSON이 즉시 업데이트됩니다.
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-heading); font-size:32px; margin:48px 0 24px; display:flex; align-items:center; gap:16px">
-      <span style="display:inline-block; width:40px; height:40px; background:var(--bh-red); color:var(--bh-white); text-align:center; line-height:40px; font-family:var(--font-display); font-size:18px">A</span>
+    <!-- =================================
+         A. 기본기 다지기
+         ================================= -->
+    <h3 class="roadmap-section-title">
+      <span class="roadmap-section-mark" style="background:var(--bh-red); color:var(--bh-white)">A</span>
       기본기 다지기
     </h3>
 
     <div class="roadmap-grid">
-      <div class="roadmap-card">
+
+      <!-- A-01 (SAMPLE - 펼치기 가능) -->
+      <div class="roadmap-card expandable" onclick="toggleRoadmap(this, event)">
         <div class="roadmap-num">A · 01</div>
         <h4 class="roadmap-title">n8n 인터페이스 완전 정복</h4>
         <p class="roadmap-desc">에디터 UI, 캔버스 조작, 패널 활용. Make 사용자가 n8n으로 넘어오면서 헷갈리는 용어를 매핑합니다 (Scenario → Workflow 등).</p>
-        <span class="roadmap-tag">기본</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">기본</span>
+          <span class="status-badge published">✅ 공개됨</span>
+          <span class="expand-icon">+</span>
+        </div>
+        <div class="roadmap-detail">
+          <div class="roadmap-detail-inner">
+
+            <h5>🎯 학습 목표</h5>
+            <ul>
+              <li>n8n 에디터 UI의 모든 영역(상단 메뉴·캔버스·노드 패널·실행 결과)을 이해</li>
+              <li>Make의 익숙한 용어를 n8n 용어로 자유롭게 변환</li>
+              <li>첫 번째 워크플로우를 만들어 수동 실행</li>
+              <li>워크플로우 저장·내보내기·가져오기 흐름 익히기</li>
+            </ul>
+
+            <h5>📚 학습 내용</h5>
+
+            <p><strong>① n8n 에디터 6대 영역</strong></p>
+            <ul>
+              <li><strong>상단 바</strong> — 워크플로우명, 활성화 토글, 저장, 실행 버튼</li>
+              <li><strong>좌측 사이드바</strong> — Workflows, Credentials, Executions, Templates</li>
+              <li><strong>중앙 캔버스</strong> — 노드를 드래그앤드롭으로 배치하는 작업 영역</li>
+              <li><strong>노드 패널 (우측)</strong> — 노드 클릭 시 파라미터 입력 영역</li>
+              <li><strong>하단 패널</strong> — 실행 결과 (Input/Output 데이터) 표시</li>
+              <li><strong>노드 추가 버튼 (+ 아이콘)</strong> — 새 노드 검색 및 추가</li>
+            </ul>
+
+            <p><strong>② Make → n8n 용어 매핑표</strong></p>
+            <table class="compare-table" style="margin: 12px 0">
+              <thead>
+                <tr><th>Make 용어</th><th>n8n 용어</th><th>의미</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Scenario</td><td><strong>Workflow</strong></td><td>자동화 작업 전체 단위</td></tr>
+                <tr><td>Module</td><td><strong>Node</strong></td><td>개별 작업 단위 (블록)</td></tr>
+                <tr><td>Bundle</td><td><strong>Item</strong></td><td>데이터 한 건</td></tr>
+                <tr><td>Operation</td><td><strong>Execution</strong></td><td>워크플로우 1회 실행</td></tr>
+                <tr><td>Router</td><td><strong>Switch / IF</strong></td><td>조건 분기 노드</td></tr>
+                <tr><td>Iterator</td><td><strong>Split Out / Loop Over Items</strong></td><td>배열 반복 처리</td></tr>
+                <tr><td>Aggregator</td><td><strong>Aggregate / Merge</strong></td><td>데이터 합치기</td></tr>
+                <tr><td>Webhook (incoming)</td><td><strong>Webhook (trigger)</strong></td><td>외부 호출 받기</td></tr>
+                <tr><td>Connection</td><td><strong>Credential</strong></td><td>API 키·OAuth 등 인증정보</td></tr>
+                <tr><td>Filter</td><td><strong>Filter Node</strong></td><td>조건에 맞는 데이터만 통과</td></tr>
+              </tbody>
+            </table>
+
+            <p><strong>③ 첫 워크플로우 만들기 (3분 실습)</strong></p>
+            <ol style="padding-left:24px; margin:12px 0">
+              <li>좌측 상단 <strong>+ Workflow</strong> 클릭 → 새 워크플로우</li>
+              <li>워크플로우 이름을 "도시아재 첫 자동화"로 변경 (상단 제목 클릭)</li>
+              <li>캔버스 중앙 <strong>+ Trigger</strong> 클릭 → <strong>On clicking "Execute Workflow"</strong> (Manual Trigger) 선택</li>
+              <li>Manual Trigger 오른쪽 <strong>+</strong> 클릭 → <strong>Edit Fields (Set)</strong> 검색·추가</li>
+              <li>Set 노드에서 "Add Field" → 이름 <code>greeting</code>, 값 <code>안녕하세요, n8n!</code></li>
+              <li>상단 우측 <strong>Execute Workflow</strong> 버튼 클릭</li>
+              <li>하단 패널에서 출력 확인 → <code>greeting: 안녕하세요, n8n!</code> 표시되면 성공 ✅</li>
+              <li>상단 우측 <strong>Save</strong> (또는 Ctrl+S)</li>
+            </ol>
+
+            <p><strong>④ 워크플로우 내보내기 / 가져오기</strong></p>
+            <ul>
+              <li><strong>내보내기:</strong> 워크플로우 우측 상단 <strong>⋮ (점 3개)</strong> → <strong>Download</strong> → JSON 파일 저장</li>
+              <li><strong>가져오기:</strong> 워크플로우 목록에서 <strong>+</strong> → <strong>Import from File</strong> → JSON 선택</li>
+              <li>아래 <strong>📥 다운로드</strong>를 클릭해 도시아재가 만든 샘플 워크플로우를 즉시 임포트해보세요!</li>
+            </ul>
+
+            <h5>💾 워크플로우 다운로드</h5>
+            <a href="workflows/a01-n8n-ui-tour.json" download class="download-btn" onclick="event.stopPropagation()">
+              <span class="download-icon">📥</span>
+              <span class="download-text">
+                <strong>a01-n8n-ui-tour.json</strong>
+                <em>도시아재 첫 자동화 워크플로우 · 2개 노드 (Manual Trigger + Set)</em>
+              </span>
+            </a>
+
+            <div class="info-card tip" style="margin-top:20px">
+              <div class="info-card-title">💡 임포트 방법</div>
+              <div class="info-card-body">
+                ① 위 버튼으로 JSON 다운로드 → ② n8n 접속 → ③ 좌측 <strong>Workflows</strong> → ④ 우측 상단 <strong>+ 메뉴 → Import from File</strong> → ⑤ JSON 선택 → ⑥ 자동 임포트 완료
+              </div>
+            </div>
+
+            <h5 style="margin-top:24px">📝 다음 학습 추천</h5>
+            <ul>
+              <li><strong>A-02</strong> — 노드의 종류와 데이터 흐름 이해</li>
+              <li><strong>A-03</strong> — Credentials로 외부 API 안전하게 연결</li>
+              <li><strong>B-01</strong> — 실전: 아파트 실거래가 자동 모니터링 (실습 추천)</li>
+            </ul>
+
+          </div>
+        </div>
       </div>
 
+      <!-- A-02 (Coming Soon) -->
       <div class="roadmap-card">
         <div class="roadmap-num">A · 02</div>
         <h4 class="roadmap-title">노드(Node)와 워크플로우</h4>
         <p class="roadmap-desc">트리거 노드, 액션 노드, 코어 노드의 차이. 데이터가 노드 사이를 어떻게 흐르는지 시각적으로 이해합니다.</p>
-        <span class="roadmap-tag">기본</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">기본</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
+      <!-- A-03 (Coming Soon) -->
       <div class="roadmap-card">
         <div class="roadmap-num">A · 03</div>
         <h4 class="roadmap-title">Credentials 안전하게 관리</h4>
         <p class="roadmap-desc">API 키, OAuth 토큰을 어떻게 저장하고 재사용할지. 보안 원칙과 실수하기 쉬운 함정 정리.</p>
-        <span class="roadmap-tag">기본</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">기본</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
+      <!-- A-04 (Coming Soon) -->
       <div class="roadmap-card">
         <div class="roadmap-num">A · 04</div>
         <h4 class="roadmap-title">데이터 구조 이해하기</h4>
         <p class="roadmap-desc">n8n의 Item 개념, JSON 구조, Expression 문법. 데이터를 자유자재로 변환하는 핵심 기초.</p>
-        <span class="roadmap-tag">기본</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">기본</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-heading); font-size:32px; margin:48px 0 24px; display:flex; align-items:center; gap:16px">
-      <span style="display:inline-block; width:40px; height:40px; background:var(--bh-yellow); color:var(--bh-black); text-align:center; line-height:40px; font-family:var(--font-display); font-size:18px; border:2px solid var(--bh-black)">B</span>
+    <!-- =================================
+         B. 공인중개사 실전 자동화
+         ================================= -->
+    <h3 class="roadmap-section-title">
+      <span class="roadmap-section-mark" style="background:var(--bh-yellow); color:var(--bh-black); border:2px solid var(--bh-black)">B</span>
       공인중개사 실전 자동화
     </h3>
 
@@ -2657,33 +3016,48 @@ networks:
         <div class="roadmap-num">B · 01</div>
         <h4 class="roadmap-title">아파트 실거래가 자동 모니터링</h4>
         <p class="roadmap-desc">국토교통부 실거래가 API → 시군구·평형별 필터링 → Google Sheets 자동 기록 → Telegram 알림. 매일 아침 시세 리포트.</p>
-        <span class="roadmap-tag">실전</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">실전</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">B · 02</div>
         <h4 class="roadmap-title">법원경매 입찰 후보 스크리닝</h4>
         <p class="roadmap-desc">법원경매정보 사이트 크롤링 → 권리분석 1차 필터 → 클라이언트 조건 매칭 → 자동 리포트 발송.</p>
-        <span class="roadmap-tag">실전</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">실전</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">B · 03</div>
         <h4 class="roadmap-title">매물 현장점검 체크리스트 자동화</h4>
         <p class="roadmap-desc">현장 점검 양식 → 사진·체크 자동 정리 → 클라이언트용 보고서 PDF 자동 생성.</p>
-        <span class="roadmap-tag">실전</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">실전</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">B · 04</div>
         <h4 class="roadmap-title">전세·월세 시세 분석 대시보드</h4>
         <p class="roadmap-desc">지역별 시세 데이터 수집 → 차트 자동 생성 → 주간 리포트 자동 발송. 진관동·지축동·삼송동 등 관심 지역 맞춤.</p>
-        <span class="roadmap-tag">실전</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">실전</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-heading); font-size:32px; margin:48px 0 24px; display:flex; align-items:center; gap:16px">
-      <span style="display:inline-block; width:40px; height:40px; background:var(--bh-blue); color:var(--bh-white); text-align:center; line-height:40px; font-family:var(--font-display); font-size:18px">C</span>
+    <!-- =================================
+         C. AI 통합 자동화
+         ================================= -->
+    <h3 class="roadmap-section-title">
+      <span class="roadmap-section-mark" style="background:var(--bh-blue); color:var(--bh-white)">C</span>
       AI 통합 자동화
     </h3>
 
@@ -2692,33 +3066,48 @@ networks:
         <div class="roadmap-num">C · 01</div>
         <h4 class="roadmap-title">AI 노드 활용 기초</h4>
         <p class="roadmap-desc">OpenAI · Anthropic Claude · Google Gemini 노드로 텍스트 생성, 요약, 분석. 프롬프트 엔지니어링 실전.</p>
-        <span class="roadmap-tag">AI</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">AI</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">C · 02</div>
         <h4 class="roadmap-title">AI Agent + n8n 워크플로우</h4>
         <p class="roadmap-desc">AI Agent로 의도 파악 → n8n 워크플로우로 정확한 실행. 랜덤성 없는 자동화 시스템 구축.</p>
-        <span class="roadmap-tag">AI</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">AI</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">C · 03</div>
         <h4 class="roadmap-title">MCP 서버로 데이터 확장</h4>
         <p class="roadmap-desc">실거래가 MCP, 건축물대장 MCP, 한국법령 MCP를 n8n에 연동. AI가 부동산 데이터에 직접 접근.</p>
-        <span class="roadmap-tag">AI</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">AI</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">C · 04</div>
         <h4 class="roadmap-title">고객 상담 챗봇 만들기</h4>
         <p class="roadmap-desc">Telegram/카카오톡 트리거 → AI 응답 → 상담 이력 자동 저장. 24시간 응대 가능한 상담 봇.</p>
-        <span class="roadmap-tag">AI</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">AI</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-heading); font-size:32px; margin:48px 0 24px; display:flex; align-items:center; gap:16px">
-      <span style="display:inline-block; width:40px; height:40px; background:var(--bh-black); color:var(--bh-yellow); text-align:center; line-height:40px; font-family:var(--font-display); font-size:18px">D</span>
+    <!-- =================================
+         D. 마케팅 & 콘텐츠 자동화
+         ================================= -->
+    <h3 class="roadmap-section-title">
+      <span class="roadmap-section-mark" style="background:var(--bh-black); color:var(--bh-yellow)">D</span>
       마케팅 &amp; 콘텐츠 자동화
     </h3>
 
@@ -2727,33 +3116,48 @@ networks:
         <div class="roadmap-num">D · 01</div>
         <h4 class="roadmap-title">YouTube 자막 → 부동산 뉴스 요약</h4>
         <p class="roadmap-desc">RSS Trigger → YouTube 자막 수집 → AI 요약 → Threads/Instagram 자동 발행.</p>
-        <span class="roadmap-tag">마케팅</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">마케팅</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">D · 02</div>
         <h4 class="roadmap-title">매물 카드뉴스 자동 생성</h4>
         <p class="roadmap-desc">매물 정보 입력 → AI로 카피라이팅 → 이미지 생성 (nanobanana/DALL-E) → SNS 자동 업로드.</p>
-        <span class="roadmap-tag">마케팅</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">마케팅</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">D · 03</div>
         <h4 class="roadmap-title">고객 이메일 자동 응대</h4>
         <p class="roadmap-desc">Gmail Trigger → 이메일 분류 → AI 답변 초안 → 검토 후 발송. 인보이스, 계약 문의, 일반 문의 자동 분기.</p>
-        <span class="roadmap-tag">마케팅</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">마케팅</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">D · 04</div>
         <h4 class="roadmap-title">주간 뉴스레터 자동 발행</h4>
         <p class="roadmap-desc">주간 부동산·AI 뉴스 수집 → AI 큐레이션 → 뉴스레터 자동 생성 → Mailchimp/Stibee 발송.</p>
-        <span class="roadmap-tag">마케팅</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">마케팅</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-heading); font-size:32px; margin:48px 0 24px; display:flex; align-items:center; gap:16px">
-      <span style="display:inline-block; width:40px; height:40px; background:var(--bh-red); color:var(--bh-white); text-align:center; line-height:40px; font-family:var(--font-display); font-size:18px">E</span>
+    <!-- =================================
+         E. 고급 운영 & 보안
+         ================================= -->
+    <h3 class="roadmap-section-title">
+      <span class="roadmap-section-mark" style="background:var(--bh-red); color:var(--bh-white)">E</span>
       고급 운영 &amp; 보안
     </h3>
 
@@ -2762,28 +3166,40 @@ networks:
         <div class="roadmap-num">E · 01</div>
         <h4 class="roadmap-title">Error Workflow로 안정성 확보</h4>
         <p class="roadmap-desc">오류 발생 시 자동 알림, 재시도, 백업 동작. 실무 운영에 필수.</p>
-        <span class="roadmap-tag">고급</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">고급</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">E · 02</div>
         <h4 class="roadmap-title">PostgreSQL 연결로 확장성 강화</h4>
         <p class="roadmap-desc">기본 SQLite에서 PostgreSQL로 데이터베이스 업그레이드. 대량 워크플로우 안정 운영.</p>
-        <span class="roadmap-tag">고급</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">고급</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">E · 03</div>
         <h4 class="roadmap-title">Cloudflare Tunnel 서비스 등록</h4>
         <p class="roadmap-desc">터미널 의존성 제거. Windows 서비스로 등록해 PC 부팅 시 자동 실행.</p>
-        <span class="roadmap-tag">고급</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">고급</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
 
       <div class="roadmap-card">
         <div class="roadmap-num">E · 04</div>
         <h4 class="roadmap-title">백업 &amp; 복구 자동화</h4>
         <p class="roadmap-desc">워크플로우·Credential·실행이력 정기 백업. Git/Google Drive 자동 동기화.</p>
-        <span class="roadmap-tag">고급</span>
+        <div class="roadmap-meta">
+          <span class="roadmap-tag">고급</span>
+          <span class="status-badge coming-soon">🚧 준비 중</span>
+        </div>
       </div>
     </div>
 
@@ -2794,7 +3210,7 @@ networks:
         <strong>이미 Make 사용자:</strong> A-01 (용어 매핑) → 바로 B/C/D로<br>
         <strong>실무에 바로 적용:</strong> B 섹션 (공인중개사 실전) 위주<br>
         <strong>AI 결합 관심:</strong> A 기본 → C 섹션 (AI 통합)<br><br>
-        <em>각 강의가 공개되면 본 가이드의 해당 카드를 클릭하면 상세 내용으로 연결됩니다.</em>
+        <em>각 강의가 공개되면 해당 카드를 클릭하면 상세 내용 + 워크플로우 JSON이 함께 펼쳐집니다.</em>
       </div>
     </div>
 
@@ -3613,6 +4029,18 @@ TZ=Asia/Seoul</pre>
     }
   }
   window.toggleFAQ = toggleFAQ;
+
+  // ----------------------------------------
+  // 로드맵 카드 펼치기 (Episode 2 · 활용편)
+  // ----------------------------------------
+  function toggleRoadmap(cardEl, evt) {
+    // 다운로드 버튼이나 링크 클릭은 무시
+    if (evt && evt.target.closest('a, .download-btn, button')) return;
+    cardEl.classList.toggle('open');
+    const icon = cardEl.querySelector('.expand-icon');
+    if (icon) icon.textContent = cardEl.classList.contains('open') ? '×' : '+';
+  }
+  window.toggleRoadmap = toggleRoadmap;
 
   // ----------------------------------------
   // 명령어 복사 버튼
